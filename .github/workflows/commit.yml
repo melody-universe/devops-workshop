@@ -1,0 +1,29 @@
+name: Commit
+
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: Commit message
+        default: automated commit
+        required: true
+
+jobs:
+  export-unmanaged:
+    runs-on: ubuntu-latest
+    environment: development
+    steps:
+    - name: Export unmanaged solution
+      uses: microsoft/powerplatform-actions/export-solution@0.4.2
+      with:
+        environment-url: ${{ secrets.URL }}
+        user-name: ${{ secrets.USERNAME }}
+        password-secret: ${{ secrets.PASSWORD }}
+        solution-name: contoso_university_core
+        solution-output-file: contoso_university_core.zip
+        run-asynchronously: true
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: unmanaged-solution
+        path: contoso_university_core.zip
