@@ -71,3 +71,5 @@ jobs:
         solution-file: ${{ runner.temp }}/contoso_university_core.zip
         solution-folder: contents
         solution-type: Both
+    - name: Add & Commit
+      uses: EndBug/add-and-commit@v7.3.0
