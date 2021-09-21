@@ -27,3 +27,22 @@ jobs:
       with:
         name: unmanaged-solution
         path: contoso_university_core.zip
+  export-managed:
+    runs-on: ubuntu-latest
+    environment: development
+    steps:
+    - name: Export managed solution
+      uses: microsoft/powerplatform-actions/export-solution@0.4.2
+      with:
+        environment-url: ${{ secrets.URL }}
+        user-name: ${{ secrets.USERNAME }}
+        password-secret: ${{ secrets.PASSWORD }}
+        solution-name: contoso_university_core
+        solution-output-file: contoso_university_core_managed.zip
+        run-asynchronously: true
+        managed: true
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: managed-solution
+        path: contoso_university_core_managed.zip
