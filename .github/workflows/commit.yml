@@ -36,8 +36,9 @@ jobs:
       uses: microsoft/powerplatform-actions/export-solution@0.4.2
       with:
         environment-url: ${{ secrets.URL }}
-        user-name: ${{ secrets.USERNAME }}
-        password-secret: ${{ secrets.PASSWORD }}
+        app-id: ${{ secrets.CLIENT_ID }}
+        client-secret: ${{ secrets.CLIENT_SECRET }}
+        tenant-id: ${{ secrets.TENANT_ID }}
         solution-name: contoso_university_core
         solution-output-file: contoso_university_core_managed.zip
         run-asynchronously: true
