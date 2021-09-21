@@ -6,6 +6,7 @@
   <EntityRelationship Name="business_unit_cu_semester" />
   <EntityRelationship Name="cu_application_applicant_id_Contact" />
   <EntityRelationship Name="cu_application_department_id_cu_departmen" />
+  <EntityRelationship Name="cu_application_major_id_cu_major" />
   <EntityRelationship Name="cu_department_head_id_Contact" />
   <EntityRelationship Name="cu_major_department_id_cu_department" />
   <EntityRelationship Name="lk_cu_application_createdby" />

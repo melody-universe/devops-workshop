@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0.0.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form>
+    <form headerdensity="HighWithControls">
       <tabs>
         <tab verticallayout="true" id="{27a83928-74f0-418c-b8ae-c6fea62c0acf}" IsUserDefined="1">
           <labels>
@@ -28,6 +28,30 @@
                       </cell>
                     </row>
                     <row>
+                      <cell id="{4e955337-e795-432a-941d-78daf9ce488d}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Applicant" languagecode="1033" />
+                        </labels>
+                        <control id="cu_applicant_id" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="cu_applicant_id" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0aa58a4c-53ad-419c-bbdb-cd348dda5eca}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Department" languagecode="1033" />
+                        </labels>
+                        <control id="cu_department_id" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="cu_department_id" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{706d737f-a94b-4aeb-be34-18f02d4e5614}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Major" languagecode="1033" />
+                        </labels>
+                        <control id="cu_major_id" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="cu_major_id" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{afb23210-577a-4dc0-b965-f3acaaa36a94}">
                         <labels>
                           <label description="Owner" languagecode="1033" />
@@ -42,6 +66,51 @@
           </columns>
         </tab>
       </tabs>
+      <header id="{b0f33f6d-f1f1-4eb9-91ec-82e7539259ad}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{637fab7c-5558-481f-adc6-d54f7c3e7429}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{f07ff728-e8aa-4ed7-b8f5-18c32c461b48}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{9c86883f-6895-4a6e-9847-43303b7785fb}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{ab3b55ed-d0c5-4bcb-b770-1e9a37d9c04c}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{36b902d6-c9fd-4ef0-b4ca-17604fd83cd1}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{f96bdd07-92fd-419f-99da-ffb0cf9b847f}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{d4765526-c012-4aba-8994-8eb981d2444e}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>
