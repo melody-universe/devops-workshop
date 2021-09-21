@@ -32,4 +32,11 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: core
-      - run: ls -R
+      - uses: microsoft/powerplatform-actions/import-solution@0.4.2
+        with:
+          environment-url: ${{ secrets.URL }}
+          app-id: ${{ secrets.CLIENT_ID }}
+          client-secret: ${{ secrets.CLIENT_SECRET }}
+          tenant-id: ${{ secrets.TENANT_ID }}
+          solution-file: contoso_university_core_managed.zip
+          run-asynchronously: true
