@@ -23,3 +23,11 @@ jobs:
         with:
           name: core
           path: contoso_university_core*.zip
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: core
+      - run: ls -R
