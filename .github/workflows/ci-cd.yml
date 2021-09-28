@@ -3,15 +3,15 @@ name: CI-CD
 on:
   push:
     branches:
-    - main
+      - main
     paths:
-    - contents/*
-    - .github/workflows/ci-cd.yml
+      - contents/*
+      - .github/workflows/ci-cd.yml
   workflow_dispatch:
   workflow_run:
-    workflows: [ Commit ]
-    branches: [ main ]
-    types: [ completed ]
+    workflows: [Commit]
+    branches: [main]
+    types: [completed]
 
 jobs:
   build:
@@ -28,12 +28,53 @@ jobs:
         with:
           name: core
           path: contoso_university_core*.zip
-  deploy:
+
+  deploy-it-testing:
+    runs-on: ubuntu-latest
+    environment: it-testing
+    concurrency: it-testing
+    needs:
+      - build
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: core
+      - uses: microsoft/powerplatform-actions/import-solution@0.4.2
+        with:
+          environment-url: ${{ secrets.URL }}
+          app-id: ${{ secrets.CLIENT_ID }}
+          client-secret: ${{ secrets.CLIENT_SECRET }}
+          tenant-id: ${{ secrets.TENANT_ID }}
+          solution-file: contoso_university_core_managed.zip
+          run-asynchronously: true
+
+  deploy-qa:
+    runs-on: ubuntu-latest
+    environment: qa
+    concurrency: qa
+    needs:
+      - build
+      - deploy-it-testing
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: core
+      - uses: microsoft/powerplatform-actions/import-solution@0.4.2
+        with:
+          environment-url: ${{ secrets.URL }}
+          app-id: ${{ secrets.CLIENT_ID }}
+          client-secret: ${{ secrets.CLIENT_SECRET }}
+          tenant-id: ${{ secrets.TENANT_ID }}
+          solution-file: contoso_university_core_managed.zip
+          run-asynchronously: true
+
+  deploy-production:
     runs-on: ubuntu-latest
     environment: production
     concurrency: production
     needs:
       - build
+      - deploy-qa
     steps:
       - uses: actions/download-artifact@v2
         with:
