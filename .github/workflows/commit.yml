@@ -57,6 +57,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: development
+          token: ${{ secrets.REPO_TOKEN }}
       - name: Download unmanaged solution
         uses: actions/download-artifact@v2
         with:
