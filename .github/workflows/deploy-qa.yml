@@ -5,46 +5,36 @@ on:
     types: [submitted, edited]
 
 jobs:
-  troubleshoot:
+  build:
     runs-on: ubuntu-latest
+    if: ${{ github.event.review.state == 'approved' && contains(github.event.review.body, 'Deploy to QA') }}
     steps:
-      - name: troubleshoot
-        run: |
-          echo "State: ${{ github.event.review.state }}"
-          cat << EOF
-          ${{ github.event.review.body }}
-          EOF
+      - uses: actions/checkout@v2
+      - uses: microsoft/powerplatform-actions/pack-solution@0.4.2
+        with:
+          solution-file: contoso_university_core.zip
+          solution-folder: contents
+          solution-type: Both
+      - uses: actions/upload-artifact@v2
+        with:
+          name: core
+          path: contoso_university_core*.zip
 
-#  build:
-#    runs-on: ubuntu-latest
-#    if: ${{ github.event.review.state == 'approved' && contains(github.event.review.body, 'Deploy to QA') }}
-#    steps:
-#      - uses: actions/checkout@v2
-#      - uses: microsoft/powerplatform-actions/pack-solution@0.4.2
-#        with:
-#          solution-file: contoso_university_core.zip
-#          solution-folder: contents
-#          solution-type: Both
-#      - uses: actions/upload-artifact@v2
-#        with:
-#          name: core
-#          path: contoso_university_core*.zip
-#
-#  deploy-it-testing:
-#    runs-on: ubuntu-latest
-#    environment: qa
-#    concurrency: qa
-#    needs:
-#      - build
-#    steps:
-#      - uses: actions/download-artifact@v2
-#        with:
-#          name: core
-#      - uses: microsoft/powerplatform-actions/import-solution@0.4.2
-#        with:
-#          environment-url: ${{ secrets.URL }}
-#          app-id: ${{ secrets.CLIENT_ID }}
-#          client-secret: ${{ secrets.CLIENT_SECRET }}
-#          tenant-id: ${{ secrets.TENANT_ID }}
-#          solution-file: contoso_university_core_managed.zip
-#          run-asynchronously: true
+  deploy-qa:
+    runs-on: ubuntu-latest
+    environment: qa
+    concurrency: qa
+    needs:
+      - build
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: core
+      - uses: microsoft/powerplatform-actions/import-solution@0.4.2
+        with:
+          environment-url: ${{ secrets.URL }}
+          app-id: ${{ secrets.CLIENT_ID }}
+          client-secret: ${{ secrets.CLIENT_SECRET }}
+          tenant-id: ${{ secrets.TENANT_ID }}
+          solution-file: contoso_university_core_managed.zip
+          run-asynchronously: true
