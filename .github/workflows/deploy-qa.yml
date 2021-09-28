@@ -11,13 +11,13 @@ jobs:
       - name: troubleshoot
         run: |
           echo "State: ${{ github.event.review.state }}"
-          cat EOF
+          cat << EOF
           ${{ github.event.review.body }}
           EOF
 
 #  build:
 #    runs-on: ubuntu-latest
-#    if: ${{ github.event.review.state == 'APPROVED' && contains(github.event.review.body, 'Deploy to QA') }}
+#    if: ${{ github.event.review.state == 'approved' && contains(github.event.review.body, 'Deploy to QA') }}
 #    steps:
 #      - uses: actions/checkout@v2
 #      - uses: microsoft/powerplatform-actions/pack-solution@0.4.2
