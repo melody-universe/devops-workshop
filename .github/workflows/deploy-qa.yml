@@ -8,9 +8,12 @@ jobs:
   troubleshoot:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo "Event: ${{ toJSON(github.event) }}"
-        name: troubleshoot
+      - name: troubleshoot
+        run: |
+          cat << EOF
+          ${{ toJSON(github.event) }}
+          EOF
+
 #  build:
 #    runs-on: ubuntu-latest
 #    if: ${{ github.event.pull_request_review.review.state == 'APPROVED' && contains(github.event.pull_request_review.review.body, 'Deploy to QA') }}
