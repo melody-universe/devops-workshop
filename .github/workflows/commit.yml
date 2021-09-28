@@ -75,7 +75,8 @@ jobs:
           solution-type: Both
       - name: Create development if it does not exist
         run: |
-          if [[ ! -z $(git ls-remote --heads origin) ]]
+          git fetch
+          if [[ -z $(git ls-remote --heads origin development) ]]
           then
             git checkout -b development
             git push -u origin HEAD
