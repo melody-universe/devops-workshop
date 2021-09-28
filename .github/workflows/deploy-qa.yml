@@ -1,12 +1,13 @@
-name: Deploy to IT Testing
+name: Deploy to QA
 
 on:
-  pull_request:
-    branches: [main]
+  pull_request_review:
+    types: [submitted, edited]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request_review.state == 'APPROVED' && contains(github.event.pull_request_review.body, 'Deploy to QA') }}
     steps:
       - uses: actions/checkout@v2
       - uses: microsoft/powerplatform-actions/pack-solution@0.4.2
@@ -21,8 +22,8 @@ jobs:
 
   deploy-it-testing:
     runs-on: ubuntu-latest
-    environment: it-testing
-    concurrency: it-testing
+    environment: qa
+    concurrency: qa
     needs:
       - build
     steps:
