@@ -13,65 +13,66 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     steps:
-    - name: Export unmanaged solution
-      uses: microsoft/powerplatform-actions/export-solution@0.4.2
-      with:
-        environment-url: ${{ secrets.URL }}
-        app-id: ${{ secrets.CLIENT_ID }}
-        client-secret: ${{ secrets.CLIENT_SECRET }}
-        tenant-id: ${{ secrets.TENANT_ID }}
-        solution-name: contoso_university_core
-        solution-output-file: contoso_university_core.zip
-        run-asynchronously: true
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: unmanaged-solution
-        path: contoso_university_core.zip
+      - name: Export unmanaged solution
+        uses: microsoft/powerplatform-actions/export-solution@0.4.2
+        with:
+          environment-url: ${{ secrets.URL }}
+          app-id: ${{ secrets.CLIENT_ID }}
+          client-secret: ${{ secrets.CLIENT_SECRET }}
+          tenant-id: ${{ secrets.TENANT_ID }}
+          solution-name: contoso_university_core
+          solution-output-file: contoso_university_core.zip
+          run-asynchronously: true
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: unmanaged-solution
+          path: contoso_university_core.zip
   export-managed:
     runs-on: ubuntu-latest
     environment: development
     steps:
-    - name: Export managed solution
-      uses: microsoft/powerplatform-actions/export-solution@0.4.2
-      with:
-        environment-url: ${{ secrets.URL }}
-        app-id: ${{ secrets.CLIENT_ID }}
-        client-secret: ${{ secrets.CLIENT_SECRET }}
-        tenant-id: ${{ secrets.TENANT_ID }}
-        solution-name: contoso_university_core
-        solution-output-file: contoso_university_core_managed.zip
-        run-asynchronously: true
-        managed: true
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: managed-solution
-        path: contoso_university_core_managed.zip
+      - name: Export managed solution
+        uses: microsoft/powerplatform-actions/export-solution@0.4.2
+        with:
+          environment-url: ${{ secrets.URL }}
+          app-id: ${{ secrets.CLIENT_ID }}
+          client-secret: ${{ secrets.CLIENT_SECRET }}
+          tenant-id: ${{ secrets.TENANT_ID }}
+          solution-name: contoso_university_core
+          solution-output-file: contoso_university_core_managed.zip
+          run-asynchronously: true
+          managed: true
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: managed-solution
+          path: contoso_university_core_managed.zip
   unpack-commit:
     runs-on: ubuntu-latest
     needs:
-    - export-unmanaged
-    - export-managed
+      - export-unmanaged
+      - export-managed
     steps:
-    - uses: actions/checkout@v2
-    - name: Download unmanaged solution
-      uses: actions/download-artifact@v2
-      with:
-        name: unmanaged-solution
-        path: ${{ runner.temp }}
-    - name: Download managed solution
-      uses: actions/download-artifact@v2
-      with:
-        name: managed-solution
-        path: ${{ runner.temp }}
-    - name: Unpack solution
-      uses: microsoft/powerplatform-actions/unpack-solution@0.4.2
-      with:
-        solution-file: ${{ runner.temp }}/contoso_university_core.zip
-        solution-folder: contents
-        solution-type: Both
-    - name: Add & Commit
-      uses: EndBug/add-and-commit@v7.3.0
-      with:
-        message: ${{ github.event.inputs.message }}
+      - uses: actions/checkout@v2
+      - name: Download unmanaged solution
+        uses: actions/download-artifact@v2
+        with:
+          name: unmanaged-solution
+          path: ${{ runner.temp }}
+      - name: Download managed solution
+        uses: actions/download-artifact@v2
+        with:
+          name: managed-solution
+          path: ${{ runner.temp }}
+      - name: Unpack solution
+        uses: microsoft/powerplatform-actions/unpack-solution@0.4.2
+        with:
+          solution-file: ${{ runner.temp }}/contoso_university_core.zip
+          solution-folder: contents
+          solution-type: Both
+      - name: Add & Commit
+        uses: EndBug/add-and-commit@v7.3.0
+        with:
+          message: ${{ github.event.inputs.message }}
+          branch: development
