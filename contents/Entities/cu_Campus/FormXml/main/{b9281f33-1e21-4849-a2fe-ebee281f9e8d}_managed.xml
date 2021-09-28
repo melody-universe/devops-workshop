@@ -35,6 +35,13 @@
                         <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
                       </cell>
                     </row>
+                  </rows>
+                </section>
+                <section name="address_section" id="c4e75adb-50d7-44bb-97c5-cb41a415e72b" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Address" languagecode="1033" />
+                  </labels>
+                  <rows>
                     <row>
                       <cell id="{23a87ead-ee51-4fbc-875e-0bd7c3157934}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
