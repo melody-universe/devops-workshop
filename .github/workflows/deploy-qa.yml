@@ -9,8 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "State: ${{ github.event.pull_request_review.review.state }}"
-          echo "Body: ${{ github.event.pull_request_review.review.body }}"
+          echo "Event: ${{ toJSON(github.event) }}"
         name: troubleshoot
 #  build:
 #    runs-on: ubuntu-latest
