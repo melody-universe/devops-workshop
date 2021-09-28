@@ -9,12 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "State: ${{ github.event.pull_request_review.state }}"
-          echo "Body: ${{ github.event.pull_request_review.body }}"
+          echo "State: ${{ github.event.pull_request_review.review.state }}"
+          echo "Body: ${{ github.event.pull_request_review.review.body }}"
         name: troubleshoot
 #  build:
 #    runs-on: ubuntu-latest
-#    if: ${{ github.event.pull_request_review.state == 'APPROVED' }}
+#    if: ${{ github.event.pull_request_review.review.state == 'APPROVED' && contains(github.event.pull_request_review.review.body, 'Deploy to QA') }}
 #    steps:
 #      - uses: actions/checkout@v2
 #      - uses: microsoft/powerplatform-actions/pack-solution@0.4.2
