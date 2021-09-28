@@ -76,6 +76,7 @@ jobs:
           if [[ ! -z $(git ls-remote --heads origin) ]]
           then
             git checkout -b development
+            git push -u origin HEAD
           fi
       - name: Add & Commit
         uses: EndBug/add-and-commit@v7.3.0
