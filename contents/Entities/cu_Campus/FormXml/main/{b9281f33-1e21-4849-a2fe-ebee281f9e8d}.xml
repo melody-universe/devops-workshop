@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form>
+    <form headerdensity="HighWithControls">
       <tabs>
         <tab verticallayout="true" id="{b11a4d05-f05c-4a2e-964a-fb9b33a64090}" IsUserDefined="1">
           <labels>
@@ -35,6 +35,62 @@
                         <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{23a87ead-ee51-4fbc-875e-0bd7c3157934}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Address - Line 1" languagecode="1033" />
+                        </labels>
+                        <control id="cu_addressline1" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="cu_addressline1" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{26f9b859-6c92-4e6d-b832-9aef1635d4e5}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Address - Line 2" languagecode="1033" />
+                        </labels>
+                        <control id="cu_addressline2" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="cu_addressline2" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4e3dedb3-d759-4115-8242-ab307aa53055}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Address - Line 3" languagecode="1033" />
+                        </labels>
+                        <control id="cu_addressline3" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="cu_addressline3" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{065fff40-a1c9-4a61-9462-b04caf9b8a4c}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Address - City" languagecode="1033" />
+                        </labels>
+                        <control id="cu_addresscity" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="cu_addresscity" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{671a0a2f-7168-48e7-823c-70a1d3641500}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Address - State/Province" languagecode="1033" />
+                        </labels>
+                        <control id="cu_addressstateprovince" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="cu_addressstateprovince" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2d36611a-36da-451d-bd2d-0104a7158f66}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Address - Zip/Postal" languagecode="1033" />
+                        </labels>
+                        <control id="cu_addresszippostal" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="cu_addresszippostal" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6b60c204-8204-4ebf-94ce-7d32ec40c1c0}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Address - Country" languagecode="1033" />
+                        </labels>
+                        <control id="cu_addresscountry" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="cu_addresscountry" disabled="false" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
               </sections>
@@ -42,6 +98,51 @@
           </columns>
         </tab>
       </tabs>
+      <header id="{7acac470-0220-488b-9686-2254fb81ab95}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{e2ffaa97-9f85-4e32-b668-566f9ad6bb00}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{aadb52ab-570b-46dd-b096-116bc53beb3b}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{1c781134-4ec7-4812-bd0e-5f573a7cae40}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{261ca485-a7b8-422e-88eb-45abfa838a6d}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{189bbe62-668b-4a7f-ba35-61d42b53d98a}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{d5c9acdf-8180-45c9-b781-292fcd76e25d}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{5a018dd1-0a9c-4d45-8558-37744e986c0c}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>
