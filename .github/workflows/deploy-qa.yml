@@ -10,13 +10,14 @@ jobs:
     steps:
       - name: troubleshoot
         run: |
-          cat << EOF
-          ${{ toJSON(github.event) }}
+          echo "State: ${{ github.event.review.state }}"
+          cat EOF
+          ${{ github.event.review.body }}
           EOF
 
 #  build:
 #    runs-on: ubuntu-latest
-#    if: ${{ github.event.pull_request_review.review.state == 'APPROVED' && contains(github.event.pull_request_review.review.body, 'Deploy to QA') }}
+#    if: ${{ github.event.review.state == 'APPROVED' && contains(github.event.review.body, 'Deploy to QA') }}
 #    steps:
 #      - uses: actions/checkout@v2
 #      - uses: microsoft/powerplatform-actions/pack-solution@0.4.2
